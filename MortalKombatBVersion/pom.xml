@@ -17,7 +17,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <version>3.3.0</version>
             </plugin>
         </plugins>
     </reporting>
@@ -45,9 +45,13 @@
            <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-javadoc-plugin</artifactId>
-               <version>3.0.0-M1</version>
+               <version>3.3.0</version>
                <configuration>
-               <show>private</show>  <!--javadoc shows all classes and members-->
+                   <includeDependencySources>true</includeDependencySources>
+                   <dependencySourceIncludes>
+                        <dependencySourceInclude>org.apache.poi:poi</dependencySourceInclude>
+                        <dependencySourceInclude>org.apache.poi:poi-ooxml</dependencySourceInclude>
+                    </dependencySourceIncludes>
                </configuration>
                <executions>
                     <execution>
@@ -100,10 +104,28 @@
                   </descriptorRefs>
                 </configuration>
             </plugin> 
-               
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                  <execution>
+                    <id>copy-dependencies</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                      <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>
+                            ${project.build.directory}/lib
+                        </outputDirectory>
+                    </configuration>
+                  </execution>
+                </executions>
+            </plugin>
             <plugin>  
                 <!-- Build an executable JAR -->  
-                <groupId>org.apache.maven.plugins</groupId>  
+                
                 <artifactId>maven-jar-plugin</artifactId>  
                 <version>3.3.0</version> 
                 <configuration>
@@ -120,26 +142,7 @@
                 <executions>
                 </executions>  
             </plugin>
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.5.0</version>
-                <executions>
-                  <execution>
-                    <id>copy-dependencies</id>
-                    <phase>package</phase>
-                    <goals>
-                      <goal>copy-dependencies</goal>
-                    </goals>
-                    <configuration>
-                        <outputDirectory>
-                            ${project.build.directory}/lib
-                        </outputDirectory>
-                    </configuration>
-                  </execution>
-                </executions>
-              </plugin> 
+             
        </plugins>
    </build>
     
