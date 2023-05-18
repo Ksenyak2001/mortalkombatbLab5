@@ -18,7 +18,7 @@ public class srStrategy implements Strategy{
     */
     @Override
     public int fight(Player p1, Player p2, JLabel l, JLabel l2) {
-        p2.setHealth(p2.getMaxHealth()-p2.getHealth());
+        p2.setHealth((p2.getMaxHealth()-p2.getHealth())/2);
         l.setText(p1.getName() + " was stunned");
         l2.setText(p2.getName() + " regenerated");
         return 0;
@@ -29,6 +29,6 @@ public class srStrategy implements Strategy{
     */
     @Override
     public int getWin1(Player p1, Player p2) {
-        return -(p2.getMaxHealth()-p2.getHealth());
+        return -((p2.getMaxHealth()-p2.getHealth()/2));
     }
 }

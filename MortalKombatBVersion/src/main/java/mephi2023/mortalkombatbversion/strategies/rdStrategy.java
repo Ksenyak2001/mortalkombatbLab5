@@ -19,7 +19,7 @@ public class rdStrategy implements Strategy{
     @Override
     public int fight(Player p1, Player p2, JLabel l, JLabel l2) {
         p1.addCount_defense_enemy();
-        p1.setHealth(p1.getMaxHealth()-p1.getHealth());
+        p1.setHealth((p1.getMaxHealth()-p1.getHealth())/2);
         l.setText(p1.getName() + " regenerated");
         l2.setText(p2.getName() + " didn't attack");
         return 0;
@@ -30,6 +30,6 @@ public class rdStrategy implements Strategy{
     */
     @Override
     public int getWin1(Player p1, Player p2) {
-        return (p1.getMaxHealth()-p1.getHealth());
+        return ((p1.getMaxHealth()-p1.getHealth())/2);
     }
 }

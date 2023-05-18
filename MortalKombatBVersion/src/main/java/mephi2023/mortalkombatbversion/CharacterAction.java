@@ -131,7 +131,7 @@ public class CharacterAction {
      */
     private int getRandomNumb(boolean regenerate, int[] concrete_kind_fight){
         double v = Math.random();
-        if (v < 0.05 && regenerate){
+        if (v < 0.005 && regenerate){
             return (int) (Math.random()* (concrete_kind_fight.length-1));
         }
         return -1;
@@ -325,7 +325,7 @@ public class CharacterAction {
         }
         boolean findFlag = false;
         for (int i = 0; i < 5; i++) {
-            if (experience_for_next_level[i] == human.getExperience()) {
+            if (human.getLevel()<=i &&  experience_for_next_level[i] == human.getExperience()) {
                 findFlag = true;
             }
         }
@@ -343,7 +343,7 @@ public class CharacterAction {
         }
         //while(!okHealthOrDamageButton.isSelected()){}
         for (int i = 0; i < 5; i++) {
-            if (experience_for_next_level[i] == human.getExperience()) {                
+            if (human.getLevel()<=i &&  experience_for_next_level[i] == human.getExperience()) {                
                 //chooseHealthOrDamageDialog.setVisible(true);
                 //chooseHealthOrDamageDialog.setBounds(100, 100, 580, 450);                
                 human.setNextExperience(experience_for_next_level[i + 1]);
@@ -393,7 +393,7 @@ public class CharacterAction {
         
         boolean findFlag = false;
         for (int i = 0; i < 5; i++) {
-            if (experience_for_next_level[i] == human.getExperience()) {
+            if (human.getLevel()<=i &&  experience_for_next_level[i] == human.getExperience()) {
                 findFlag = true;
             }
         }
@@ -409,7 +409,7 @@ public class CharacterAction {
             damageRadioButton1.setVisible(false);
         }
         for (int i = 0; i < 5; i++) {
-            if (experience_for_next_level[i] == human.getExperience()) {
+            if (human.getLevel()<=i &&  experience_for_next_level[i] <= human.getExperience()) {
                 human.setLevel();
                 human.setNextExperience(experience_for_next_level[i + 1]);
                 //NewHealthHuman(human);

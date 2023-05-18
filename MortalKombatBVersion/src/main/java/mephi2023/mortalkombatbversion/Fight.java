@@ -179,7 +179,12 @@ public class Fight {
         }
         System.out.println(human.getHealth() + " | " + enemy.getHealth());
         if (human.getHealth() <= 0 | enemy.getHealth() <= 0) {
-            if (((Human) human).getTempLocations() < ((Human) human).getCountLocations() || 
+            if (human.getHealth() <= 0){
+                EndFinalRound(((Human) human), action, results, dialog1, dialog2,
+                        frame, label4, label5, chooseHealthOrDamageDialog, fightFrame,
+                        okHealthOrDamageButton, healthOrDamageLabel, 
+                             healthRadioButton,damageRadioButton);
+            } else if (((Human) human).getTempLocations() < ((Human) human).getCountLocations() || 
                     !(enemy instanceof ShaoKahn)){
                 EndRound(human, enemy, dialog, label3, action, items, chooseHealthOrDamageDialog, 
                         fightFrame, okHealthOrDamageButton, healthOrDamageLabel, 
@@ -292,6 +297,8 @@ public class Fight {
                              okHealthOrDamageButton, healthOrDamageLabel, 
                              healthRadioButton,damageRadioButton);
             text = "Победа на вашей стороне";
+        } else {
+            text = "Вы умерли :(";
         }
         boolean top = false;
         if (results == null) {
